@@ -1,0 +1,7 @@
+language: ruby
+
+deploy:
+  provider: heroku
+  app: sandbox-railz
+  run:
+    - "rake db:migrate"
