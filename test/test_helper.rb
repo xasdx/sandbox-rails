@@ -1,9 +1,18 @@
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
-class ActiveSupport::TestCase
-  # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
-  fixtures :all
+module TestObjectFactory
+  def t_article
+    { title: "hello", body: "there" }
+  end
+end
 
-  # Add more helper methods to be used by all tests here...
+class ActiveSupport::TestCase
+  include TestObjectFactory
+  
+  fixtures :all
+  
+  def default_auth_headers
+    { "Authorization" => "Basic #{Base64::encode64('asd:pwd')}" }
+  end
 end
